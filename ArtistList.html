@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artist List</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f8;
+      overflow-x: hidden;
+    }
+
+    /* Top Bar Styles */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 25vw;
+      height: 100vh;
+      background-color: #ffffff2e;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .top-image {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      opacity: 0.5;
+      position: relative;
+    }
+
+    /* Website Name Container Styles */
+    .website-name-container {
+      position: absolute;
+      top: 15%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+    }
+
+    .website-icon {
+      width: 5vw;
+      height: 5vw;
+      margin-right: 5px;
+      transform: rotate(-90deg);
+    }
+
+    .website-name {
+      margin: 0;
+      font-size: 2vw;
+    }
+
+    .website-slogan {
+      position: absolute;
+      top: 28%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+      font-size: 1vw;
+      color: #00000092;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-style: italic;
+      width: 20vw;
+    }
+
+    /* Search Bar Styles */
+    .search-container {
+      position: relative;
+      left: 25vw;
+      width: calc(100% - 25vw);
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      width: 300px;
+      height: 100%;
+      border: none;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    .search-button {
+      width: 100px;
+      height: 100%;
+      border: none;
+      border-radius: 5px;
+      background-color: #2772c2ad;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .search-button:hover {
+      background-color: #105095;
+    }
+
+    /* Artist List Styles */
+    .artist-list {
+      position: relative;
+      left: 25vw;
+      width: calc(100% - 25vw);
+      height: auto;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .artist-box {
+      background-color: rgba(175, 187, 214, 0.229);
+      color: #000;
+      margin: 10px;
+      width: 200px;
+      height: 250px;
+      box-shadow: 0 0 5px rgba(96, 121, 136, 0.651);
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      text-align: center;
+    }
+
+    .artist-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 20px auto;
+      object-fit: cover;
+    }
+
+    .artist-name {
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .artist-box:hover {
+      background-color: rgba(179, 204, 255, 0.5);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .artist-box:hover .artist-image {
+      opacity: 0.8;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .artist-box-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .artist-box-link:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <img src="https://di1w2o32ai2v6.cloudfront.net/design/themes/responsive/media/images/addons/tour_group/banners/catergories/1.jpg" alt="Top Image" class="top-image">
+    <div class="website-name-container">
+      <img src="https://cdn-icons-png.flaticon.com/512/2106/2106941.png" alt="Icon" class="website-icon">
+      <h1 class="website-name">GROUPIE TRACKER</h1>
+    </div>
+    <p class="website-slogan">"One good thing about music,<br>  &nbsp when it hits you, you feel no<br>&nbsp pain"</p>
+  </div>
+  <div class="search-container">
+    <input type="text" placeholder="Search for an artist" class="search-input">
+    <button class="search-button">Search</button>
+  </div>
+  <div class="artist-list">
+    {{ range .Artists }}
+    <a href="/artist/{{ .ID }}" class="artist-box-link">
+      <div class="artist-box">
+        <img src="{{ .Image }}" alt="{{ .Name }}" class="artist-image">
+        <h2 class="artist-name">{{ .Name }}</h2>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</body>
+</html>
